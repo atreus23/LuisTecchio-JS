@@ -1,0 +1,215 @@
+@mixin tamaño ($width, $heigth) {
+    width: $width;
+    height: $heigth;
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar-dark .navbar-nav .nav-link{
+        font-size: 15px;
+    }
+    .fondo-nav{
+        .logo img{
+            @include tamaño (40px, 40px);
+        }
+    }
+    .sobre{        
+        font-size: 15px;
+    }
+    .nosotros{
+        font-size: 12px;
+    }
+    .titulo{ 
+        font-size: 15px;
+    }
+    .contenedordeservicios{
+        display: block;
+
+        .formasdetrabajo{
+            font-size: 15px;
+            margin: 10px;
+        }
+
+        .serviciosp{
+        font-size: 12px;
+        }
+    }
+    .precios{
+        font-size: 15px;
+    }
+    .table{
+        width: 100%;
+        font-size: 8px;
+    }
+    .findepagina{
+        .redes{
+        font-size: 15px;
+        }
+    }
+    .contenedor{
+        display: block;
+
+        .variados{
+            font-size: 15px;
+        }
+
+        .img-thumbnail{
+            @include tamaño (250px, 250px);
+        }
+    }
+    .centrado{
+        .demostracion{
+        font-size: 20px;
+        }
+    }
+    .productos{
+        font-size: 15px;
+    }
+    .product-row{
+        .card{
+            
+        .card-title{
+            font-size: 15px;
+            }
+
+        .btn-warning{
+            font-size: 15px;
+            }
+        }
+    }
+    .tapiz{
+        background: none;
+    }
+    .contacto{
+        color: $bordes;
+        width: 300px;
+
+        .tusdatos{
+            font-size: 25px;
+        }
+
+        .datos{
+            font-size: 18px;
+        }
+
+        .controles{
+            width: 95%;
+            font-size: 15px;
+        }
+        
+        .comentarios{
+            font-size: 10px;
+        }
+        input[type="submit"]{
+            font-size: 15px;
+        }
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .navbar-dark .navbar-nav .nav-link{
+        font-size: 25px;
+    }
+    .fondo-nav{
+        .logo img{
+            @include tamaño (50px, 50px);
+        }
+    }
+    .sobre{        
+        font-size: 20px;
+    }
+    .nosotros{
+        font-size: 12px;
+    }
+    .titulo{ 
+        font-size: 20px;
+    }
+    .contenedordeservicios{
+        display: block;
+
+        .formasdetrabajo{
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        .serviciosp{
+            font-size: 15px;
+        }
+    }
+    .precios{
+        font-size: 22px;
+    }
+    .table{
+        font-size: 12px;
+    }
+    .contenedor{
+        display: block;
+
+        .variados{
+            font-size: 20px;
+        }
+
+        .img-thumbnail{
+            @include tamaño (350px, 350px);
+        }
+    }
+    .centrado{
+        .demostracion{
+        font-size: 25px;
+        }
+    }
+    .productos{
+        font-size: 20px;
+    }
+    .product-row{
+        .card-title{
+        font-size: 20px;
+        }
+    }
+    .contacto{
+        width: 400px;
+
+        .tusdatos{
+            font-size: 30px;
+        }
+
+        .datos{
+            font-size: 20px;
+        }
+
+        .controles{
+            font-size: 15px;
+        }
+
+        .comentarios{
+            font-size: 14px;
+        }
+
+        input[type="submit"]{
+            background: #b20009;
+            font-size: 18px;
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .fondo-nav{
+        .logo img{
+            @include tamaño (60px, 60px);
+        }
+    }
+    .navbar-dark .navbar-nav .nav-link{
+        font-size: 20px;
+    }
+    .contenedor{
+        .variados{
+            font-size: 20px;
+        }
+        .caracteristicas{
+            font-size: 15px;
+        }
+        
+        .img-thumbnail{
+            @include tamaño (350px, 350px);
+        }
+    }
+}

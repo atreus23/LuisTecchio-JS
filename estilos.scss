@@ -1,0 +1,322 @@
+$fondopag: #f8f8f8d0;
+$fonavfoo: #795f5fd2;
+$bordes: #000;
+$letras: #fff;
+$backimage: #807d7d;
+$background: #c0bcbc;
+$fontfamily: Georgia, 'Times New Roman', Times, serif;
+
+@mixin tamaño ($width, $heigth) {
+    width: $width;
+    height: $heigth;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.fondo{
+    background-color: $fondopag;
+}
+.fondo-nav{
+    background-image: linear-gradient($fonavfoo, $background);
+
+    .logo img{
+        @include tamaño (80px, 80px);
+    }    
+
+    .navbar-toggler{
+        border: 2px solid $bordes;
+    }
+}
+.navbar-dark .navbar-nav .nav-link{
+    color: $letras;
+    margin-left: 5px;
+    font-size: 30px;
+
+    .fas{
+        margin-right: 15px;
+    }
+}
+.nav-link{
+    text-align: center;
+    padding: 0;
+    animation-duration: 2s;
+    animation-name: aparecer;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+    @keyframes aparecer{
+        0%{
+            opacity: 0.35;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: $bordes;
+}
+.sillon{
+    width: 100%;
+}
+.principal{
+    @extend .sobre;
+    text-transform: uppercase;
+    text-shadow: 2px 5px 5px;
+    margin: 10px;
+}
+.sobre{
+    text-align: center;
+}
+.nosotros{
+    @extend .sobre;
+    padding: 15px;
+}
+.titulo{
+    @extend .sobre;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.contenedordeservicios{
+    display: flex;
+
+    .formasdetrabajo{
+        @extend .sobre;
+        background-color: $fonavfoo;
+        font-size: 25px;
+    }
+
+    .serviciosp{
+        @extend .sobre;
+        font-size: 18px;
+        margin: 20px;
+    }
+}
+.precios{
+    @extend .sobre;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.table{
+    @extend .sobre;
+    background-color: $background;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.findepagina{
+    @extend .sobre;
+    width: 100%;
+    background-image: linear-gradient($background, $fonavfoo);
+
+    .redes{
+        font-size: 25px;
+    }
+
+    .iconos{
+        display: grid;
+        grid-template-columns: 75px 75px 75px;
+        justify-content: center;
+    }
+
+    $redes: (
+        red1: #dd2a7e,
+        red2: #2956a3,
+        red3: #42e821,
+        );
+    @each $red, $color in $redes {
+        .btn--#{$red} {
+            margin: auto;
+            &:hover {
+                background-color: $color;
+                border-radius: 50px;
+            }
+        }
+    }
+
+    .derechos{
+        width: 100%;
+        color: $bordes;
+        margin-bottom: 0px;
+    }
+}
+/* fin de index */
+/* inicio de galería */
+.container{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    text-align: center;
+
+    .variados{
+        text-align: center;
+        padding: 20px;
+        font-size: 25px;
+        background-color: $background;
+    }
+
+    .img-thumbnail{
+        @include tamaño (500px, 500px);
+        margin: 20px;
+        border-radius: 10px;
+    }
+}
+/* fin de galeria */
+/* inicio de videos */
+.centrado{
+    text-align: center;
+
+    .demostracion{
+        margin-top: 30px;
+        background-color: #795f5f4f;
+        font-family: $fontfamily;
+        font-size: 30px;
+    }
+
+    .videos{
+        margin: 1rem;
+        padding-bottom: 20px;
+
+        .videosp{
+            margin: 20px;
+        }
+    }
+}
+/* fin de videos */
+/* inicio de tienda */
+.productos{
+    color: $letras;
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;
+    background-color: $backimage;
+}
+.product-row{
+    padding: 2%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 3%;
+}
+
+.card{
+    width: 300px;
+    border: 1px solid $bordes;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-img-top{
+    height: 300px;
+}
+
+.pago{
+    color: $letras;
+    background-color:#7e7e7e;
+    font-size: 1.2rem;
+    padding: 6px;
+}
+
+.pago:hover{
+    background-color: $background;
+}
+
+.simbolo{
+    display: inline-block;
+}
+
+.card-title{
+    text-align: center;
+    font-size: 25px;
+}
+
+.btn-warning{
+    display: block;
+    margin: auto;
+    color: $letras;
+    background-color:#7e7e7e;
+}
+
+.btn-warning:hover{
+    background-color: $background;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    transition: all 1s;
+}
+
+
+/* fin de tienda */
+/* inicio de contactos */
+.tapiz{
+    background: url(./imágenes/Cuadro.jpg) center;
+}
+.contacto{
+    color: $letras;
+    width: 550px;
+    background: #0000003d;
+    padding: 30px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    font-family: $fontfamily;
+    text-align: center;
+
+    .tusdatos{
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 25px;
+        font-size: 35px;   
+    }
+
+    .datos{
+        display: block;
+        font-family: $fontfamily;
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    .controles{
+        width: 50%;
+        padding: 5px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-family: $fontfamily;
+    }
+
+    .comentarios{
+        resize: none;
+        border-radius: 5px;
+        padding: 8px 14px;
+        border: 2px solid $bordes;
+        font-size: 15px;
+        font-family: $fontfamily;
+    }
+
+    input[type="submit"]{
+        border-radius: 5px;
+        margin: 10px 0;
+        background: #00b244;
+        color: $letras;
+        padding: 8px 14px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+    }
+}
+/* fin de contacto */
+
+@import "_mediaquery"

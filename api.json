@@ -1,0 +1,50 @@
+[
+    {
+      "precio": 2000,
+      "id": 1,
+      "title": "Almohadon",
+      "thumbnailUrl": "../imágenes/Almohadon.jpg"
+    },
+    {
+      "precio": 2500,
+      "id": 2,
+      "title": "Almohadon",
+      "thumbnailUrl": "../imágenes/Almohadon2.jpg"
+    },
+    {
+      "precio": 2700,
+      "id": 3,
+      "title": "Almohadon",
+      "thumbnailUrl": "../imágenes/Almohadon3.jpg"
+    },
+    {
+      "precio": 2900,
+      "id": 4,
+      "title": "Almohadon",
+      "thumbnailUrl": "../imágenes/Almohadon4.jpg"
+    },
+    {
+      "precio": 500,
+      "id": 5,
+      "title": "Tela marrón",
+      "thumbnailUrl": "../imágenes/TelaMarron.jpg"
+    },
+    {
+      "precio": 800,
+      "id": 6,
+      "title": "Tela de cuerina",
+      "thumbnailUrl": "../imágenes/TelaDeCuerina.jpg"
+    },
+    {
+      "precio": 700,
+      "id": 7,
+      "title": "Tela de colores",
+      "thumbnailUrl": "../imágenes/TelaDeCueroVariosColores.jpg"
+    },
+    {
+      "precio": 1000,
+      "id": 8,
+      "title": "Tela antimanchas",
+      "thumbnailUrl": "../imágenes/TelaAntimanchas.jpg"
+    }
+]
