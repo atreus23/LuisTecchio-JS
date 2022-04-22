@@ -260,6 +260,20 @@
   height: 300px;
 }
 
+.pagar {
+  color: #fff;
+  background-color: #7e7e7e;
+  font-size: 1.5rem;
+  padding: 6px;
+  margin-left: 50%;
+  margin-bottom: 25px;
+  border-radius: 25px;
+}
+
+.pagar:hover {
+  background-color: #c0bcbc;
+}
+
 .pago {
   color: #fff;
   background-color: #7e7e7e;
@@ -301,7 +315,7 @@
 /* fin de tienda */
 /* inicio de contactos */
 .tapiz {
-  background: url(./imágenes/Cuadro.jpg) center;
+  background: url(../imágenes/Cuadro.jpg) center;
 }
 
 .contacto {

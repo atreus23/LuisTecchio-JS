@@ -7,7 +7,6 @@ const templateCarrito = document.getElementById('template-carrito').content;
 const fragment = document.createDocumentFragment();
 let carrito = {};
 
-
 document.addEventListener('DOMContentLoaded', ()  => {
     fetchData();
     if(localStorage.getItem('carrito')){
@@ -16,20 +15,17 @@ document.addEventListener('DOMContentLoaded', ()  => {
     }
 });
 
-
 cards.addEventListener('click', e =>{
     addCarrito(e);
 });
-
 
 items.addEventListener('click', e => { 
     btnAumentarDisminuir(e); 
 });
 
-
 const fetchData = async () => {
     try {
-        const res = await fetch('../api.json');
+        const res = await fetch('../js/api.json');
         const data = await res.json();
         pintarCards(data);
     }
@@ -37,7 +33,6 @@ const fetchData = async () => {
         console.log(error);
     }
 };
-
 
 const pintarCards = data => {
     data.forEach(producto => {
@@ -51,14 +46,12 @@ const pintarCards = data => {
     cards.appendChild(fragment);
 };
 
-
 const addCarrito = e => {
     if(e.target.classList.contains('btn')){
         setCarrito(e.target.parentElement);
     };
     e.stopPropagation();
 };
-
 
 const setCarrito = objeto =>{
     const producto = {
@@ -74,7 +67,6 @@ const setCarrito = objeto =>{
     pintarCarrito();
 };
 
-
 const pintarCarrito = () => {
     items.innerHTML = '';
     Object.values(carrito).forEach(producto => {
@@ -89,9 +81,9 @@ const pintarCarrito = () => {
     });
     items.appendChild(fragment);
     pintarFooter();
+    pintarPagar();
     localStorage.setItem('carrito', JSON.stringify(carrito));
 };
-
 
 const pintarFooter = () => {
     footer.innerHTML = '';
@@ -113,6 +105,15 @@ const pintarFooter = () => {
     });
 };
 
+function pintarPagar() {
+    let pagar = document.getElementById("pagar")
+    pagar.innerHTML = "";
+    if (Object.keys(carrito).length > 0) {
+        pagar.innerHTML = 
+        `<button class="pagar" onclick="pagar()">Pagar</button>`
+        return;
+    };
+}
 
 const btnAumentarDisminuir = e => {
     if (e.target.classList.contains('btn-info')) {
@@ -139,8 +140,8 @@ function pagar(){
 
     const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0);
 
-    let formaPago = parseInt(prompt(`Su monto a pagar es de ${nPrecio}
-    1 para credito
+    let formaPago = parseInt(prompt(`Su monto a pagar es de ${nPrecio}.
+    1 para credito:
     2 para debito: `))
 
     if(formaPago === 1){
@@ -162,6 +163,8 @@ function pagar(){
                 alert(`Su pago fue aprobado
                 Total abonado ${nPrecio + recargo}.
                 3 cuotas de ${valorCuota}.`);
+                carrito = {};
+                pintarCarrito();
                 break;
             case 2:
                 recargo = nPrecio * 0.15;
@@ -170,6 +173,8 @@ function pagar(){
                 alert(`Su pago fue aprobado
                 Total abonado ${nPrecio + recargo}.
                 6 cuotas de ${valorCuota}.`);
+                carrito = {};
+                pintarCarrito();
                 break;
             case 3:
                 recargo = nPrecio * 0.20;
@@ -178,6 +183,8 @@ function pagar(){
                 alert(`Su pago fue aprobado
                 Total abonado ${nPrecio + recargo}.
                 12 cuotas de ${valorCuota}.`);
+                carrito = {};
+                pintarCarrito();
                 break;
         }
     }
@@ -186,9 +193,11 @@ function pagar(){
         let pago = prompt('Ingresa el numero de tu tarjeta: ');
 
         alert(`Tu pago fue aprobado
-        Total abonado ${nPrecio}`); 
+        Total abonado ${nPrecio}`);
+        carrito = {};
+        pintarCarrito(); 
     }
     else{
-        alert("No se pudo realizar el pago, intente nuevamente")
+        alert("No se pudo realizar el pago, intente nuevamente.")
     }
 }
