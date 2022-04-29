@@ -219,6 +219,72 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     height: 300px;
 }
 
+.cuadropago{
+    padding-bottom: 25px;
+    text-align: center;
+        
+    .tarjeta{
+        color: $letras;
+        background-color:#7e7e7e;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 25px;
+    }
+    
+    .tarjeta:hover{
+        background-color: $background;
+    }
+}
+
+.pagodebito{
+    color: $letras;
+    background: #0000003d;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    font-family: $fontfamily;
+    text-align: center;
+    font-size: 20px;
+
+    .debitoP{
+        color: $letras;
+        background-color:#7e7e7e;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 25px;
+    }
+}
+
+.pagocredito{
+    color: $letras;
+    background: #0000003d;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    font-family: $fontfamily;
+    text-align: center;
+    font-size: 20px;
+
+    .numerot{
+        margin-bottom: 15px;
+    }
+
+    .selector{
+        width: auto;
+        margin: auto;
+    }
+    
+    .creditoP{
+        color: $letras;
+        background-color:#7e7e7e;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 25px;
+    }
+}
+
 .pagar{
     color: $letras;
     background-color:#7e7e7e;

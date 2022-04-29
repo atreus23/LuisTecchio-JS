@@ -9,10 +9,8 @@ let carrito = {};
 
 document.addEventListener('DOMContentLoaded', ()  => {
     fetchData();
-    if(localStorage.getItem('carrito')){
-        carrito = JSON.parse(localStorage.getItem('carrito'));
-        pintarCarrito();
-    }
+    localStorage.getItem('carrito') && [carrito = JSON.parse(localStorage.getItem('carrito'))];
+    pintarCarrito();
 });
 
 cards.addEventListener('click', e =>{
@@ -46,27 +44,6 @@ const pintarCards = data => {
     cards.appendChild(fragment);
 };
 
-const addCarrito = e => {
-    if(e.target.classList.contains('btn')){
-        setCarrito(e.target.parentElement);
-    };
-    e.stopPropagation();
-};
-
-const setCarrito = objeto =>{
-    const producto = {
-        id: objeto.querySelector('.btn').dataset.id,
-        title: objeto.querySelector('h5').textContent,
-        precio: objeto.querySelector('p').textContent,
-        cantidad: 1
-    };
-    if(carrito.hasOwnProperty(producto.id)) {
-        producto.cantidad = carrito[producto.id].cantidad + 1;
-    };
-    carrito[producto.id] = {...producto};
-    pintarCarrito();
-};
-
 const pintarCarrito = () => {
     items.innerHTML = '';
     Object.values(carrito).forEach(producto => {
@@ -85,12 +62,36 @@ const pintarCarrito = () => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 };
 
+const addCarrito = e => {
+    e.target.classList.contains('btn') && setCarrito(e.target.parentElement);
+    e.stopPropagation();
+};
+
+const setCarrito = objeto =>{
+    const producto = {
+        id: objeto.querySelector('.btn').dataset.id,
+        title: objeto.querySelector('h5').textContent,
+        precio: objeto.querySelector('p').textContent,
+        cantidad: 1
+    };
+    carrito.hasOwnProperty(producto.id) && [producto.cantidad = carrito[producto.id].cantidad + 1];
+    carrito[producto.id] = {...producto};
+    pintarCarrito();
+};
+
+const btnAumentarDisminuir = e => {
+    const producto = carrito[e.target.dataset.id];
+    e.target.classList.contains('btn-info') && producto.cantidad++;
+    carrito[e.target.dataset.id] = { ...producto };
+    pintarCarrito();
+    e.target.classList.contains('btn-danger') && producto.cantidad--;
+    producto.cantidad === 0 ? delete carrito[e.target.dataset.id] : carrito[e.target.dataset.id] = {...producto};
+    pintarCarrito();
+    e.stopPropagation();
+};
+
 const pintarFooter = () => {
     footer.innerHTML = '';
-    if (Object.keys(carrito).length === 0) {
-        footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>`;
-        return;
-    };
     const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0);
     const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0);
     templateFooter.querySelectorAll('td')[0].textContent = nCantidad;
@@ -100,104 +101,150 @@ const pintarFooter = () => {
     footer.appendChild(fragment);
     const boton = document.querySelector('#vaciar-carrito');
     boton.addEventListener('click', () => {
-        carrito = {};
-        pintarCarrito();
+        Swal.fire({
+            title: 'Esta seguro?',
+            text: "No puede revertir esta acción",
+            icon: 'warning',
+            showCancelButton: true,
+            background: '#fff',
+            color: '#000',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, borrar todo'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                background: '#fff',
+                color: '#000',
+                title: 'Borrado!',
+                text: 'Sus productos han sido borrados',
+                icon: 'success'
+              })
+            carrito = {};
+            pintarCarrito();
+            };
+          });
     });
+    Object.keys(carrito).length === 0 && [footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>`];
+    return;
 };
 
 function pintarPagar() {
-    let pagar = document.getElementById("pagar")
-    pagar.innerHTML = "";
-    if (Object.keys(carrito).length > 0) {
-        pagar.innerHTML = 
-        `<button class="pagar" onclick="pagar()">Pagar</button>`
-        return;
-    };
-}
-
-const btnAumentarDisminuir = e => {
-    if (e.target.classList.contains('btn-info')) {
-        const producto = carrito[e.target.dataset.id];
-        producto.cantidad++;
-        carrito[e.target.dataset.id] = { ...producto };
-        pintarCarrito();
-    };
-    if (e.target.classList.contains('btn-danger')) {
-        const producto = carrito[e.target.dataset.id];
-        producto.cantidad--;
-        if (producto.cantidad === 0) {
-            delete carrito[e.target.dataset.id];
-        }
-        else {
-            carrito[e.target.dataset.id] = {...producto};
-        };
-        pintarCarrito();
-    };
-    e.stopPropagation();
+    let pagarBtn = document.getElementById("pagar");
+    pagarBtn.innerHTML = "";
+    Object.keys(carrito).length > 0 && [pagarBtn.innerHTML = `<button class="pagar" onclick="pagar()">Pagar</button>`];
+    return;
 };
 
-function pagar(){
+function pagar() {
+    let pagarBtn = document.getElementById("pagar");
+    pagarBtn.innerHTML = "";
+    let cuadroPagar = document.getElementById("cuadro-pagar");
+    cuadroPagar.innerHTML = "";
+    Object.keys(carrito).length > 0 && [cuadroPagar.innerHTML = 
+    `<div class="cuadropago">
+        <button class="tarjeta" onclick="debito()">Débito</button>
+        <button class="tarjeta" onclick="credito()">Crédito</button>
+    </div>
+    `];
+};
 
+function debito() {
+    let cuadroPagar = document.getElementById("cuadro-pagar");
+    cuadroPagar.innerHTML =
+    `<div class="pagodebito">
+        <input type="text" placeholder="Nombre">
+        <input type="text" placeholder="Apellido">
+        <input type="number" placeholder="Numero de tarjeta">
+        <button class="debitoP" onclick="alertdebito()">Pagar</button>
+    </div>`;
+};
+
+function alertdebito() {
     const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0);
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `Tu pago fue aprobado, total abonado $${nPrecio}`,
+        showConfirmButton: true,
+    });
+    carrito = {};
+    pintarCarrito();
+    pagar();
+};
 
-    let formaPago = parseInt(prompt(`Su monto a pagar es de ${nPrecio}.
-    1 para credito:
-    2 para debito: `))
+function credito() {
+    let cuadroPagar = document.getElementById("cuadro-pagar");
+    cuadroPagar.innerHTML =
+    `<div class="pagocredito">
+        <input type="text" placeholder="Nombre">
+        <input type="text" placeholder="Apellido">
+        <input class="numerot" type="number" placeholder="Numero de tarjeta">
+        <div class="form-group">
+            <select id="cuotas" class="form-control selector">
+                <option value="0">Selecione las cuotas</option>
+                <option value="1">3 cuotas con el 10% de Recargo</option>
+                <option value="2">6 cuotas con el 15% de Recargo</option>
+                <option value="3">12 cuotas con el 20% de Recargo</option>
+            </select>
+        </div>
+        <button class="creditoP" onclick="alertcredito()">Pagar</button>
+    </div>`;
+};
 
-    if(formaPago === 1){
-
-        let pago = prompt('Ingresa el numero de tu tarjeta: ');
-
-        let cuotas = parseInt(prompt(`Seleccione las cuotas deseadas
-        1 para 3 cuotas con 10% de recargo
-        2 para 6 cuotas con 15% de recargo
-        3 para 12 cuotas con 20% de recargo`));
-
-        let recargo = 0;
-
-        switch(cuotas) {
-            case 1:
-                recargo = nPrecio * 0.10;
-                valorCuota = (nPrecio + recargo) / 3;
-
-                alert(`Su pago fue aprobado
-                Total abonado ${nPrecio + recargo}.
-                3 cuotas de ${valorCuota}.`);
-                carrito = {};
-                pintarCarrito();
-                break;
-            case 2:
-                recargo = nPrecio * 0.15;
-                valorCuota = (nPrecio + recargo) / 6;
-
-                alert(`Su pago fue aprobado
-                Total abonado ${nPrecio + recargo}.
-                6 cuotas de ${valorCuota}.`);
-                carrito = {};
-                pintarCarrito();
-                break;
-            case 3:
-                recargo = nPrecio * 0.20;
-                valorCuota = (nPrecio + recargo) / 12;
-
-                alert(`Su pago fue aprobado
-                Total abonado ${nPrecio + recargo}.
-                12 cuotas de ${valorCuota}.`);
-                carrito = {};
-                pintarCarrito();
-                break;
-        }
-    }
-    else if(formaPago === 2){
-
-        let pago = prompt('Ingresa el numero de tu tarjeta: ');
-
-        alert(`Tu pago fue aprobado
-        Total abonado ${nPrecio}`);
+function alertcredito() {
+    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0);
+    let cuotas = Number(document.getElementById("cuotas").value);
+    if (cuotas === 1){
+        recargo = nPrecio * 0.10;
+        valorCuota = (nPrecio + recargo) / 3;
+        valorCuota = valorCuota.toFixed(2);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            showConfirmButton: true,
+        });
         carrito = {};
-        pintarCarrito(); 
+        pintarCarrito();
+        pagar();
+    }
+    else if(cuotas === 2){
+        recargo = nPrecio * 0.15;
+        valorCuota = (nPrecio + recargo) / 6;
+        valorCuota = valorCuota.toFixed(2);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            showConfirmButton: true,
+        });
+        carrito = {};
+        pintarCarrito();
+        pagar();
+    }
+    else if (cuotas === 3){
+        recargo = nPrecio * 0.20;
+        valorCuota = (nPrecio + recargo) / 12;
+        valorCuota = valorCuota.toFixed(2);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            showConfirmButton: true,
+        });
+        carrito = {};
+        pintarCarrito();
+        pagar();
     }
     else{
-        alert("No se pudo realizar el pago, intente nuevamente.")
-    }
-}
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `Selecione las cuotas para poder realizar el pago`,
+            showConfirmButton: true,
+        });
+        pagar();
+    };
+};
