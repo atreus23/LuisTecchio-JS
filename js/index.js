@@ -131,16 +131,16 @@ const pintarFooter = () => {
 };
 
 function pintarPagar() {
-    let pagarBtn = document.getElementById("pagar");
+    let pagarBtn = document.getElementById("pago");
     pagarBtn.innerHTML = "";
     Object.keys(carrito).length > 0 && [pagarBtn.innerHTML = `<button class="pagar" onclick="pagar()">Pagar</button>`];
     return;
 };
 
 function pagar() {
-    let pagarBtn = document.getElementById("pagar");
+    let pagarBtn = document.getElementById("pago");
     pagarBtn.innerHTML = "";
-    let cuadroPagar = document.getElementById("cuadro-pagar");
+    let cuadroPagar = document.getElementById("metodo-pago");
     cuadroPagar.innerHTML = "";
     Object.keys(carrito).length > 0 && [cuadroPagar.innerHTML = 
     `<div class="cuadropago">
@@ -151,11 +151,12 @@ function pagar() {
 };
 
 function debito() {
-    let cuadroPagar = document.getElementById("cuadro-pagar");
+    let cuadroPagar = document.getElementById("metodo-pago");
     cuadroPagar.innerHTML =
     `<div class="pagodebito">
         <input type="text" placeholder="Nombre">
         <input type="text" placeholder="Apellido">
+        <input type="email" placeholder="Email">
         <input type="number" placeholder="Numero de tarjeta">
         <button class="debitoP" onclick="alertdebito()">Pagar</button>
     </div>`;
@@ -175,11 +176,12 @@ function alertdebito() {
 };
 
 function credito() {
-    let cuadroPagar = document.getElementById("cuadro-pagar");
+    let cuadroPagar = document.getElementById("metodo-pago");
     cuadroPagar.innerHTML =
     `<div class="pagocredito">
         <input type="text" placeholder="Nombre">
         <input type="text" placeholder="Apellido">
+        <input type="email" placeholder="Email">
         <input class="numerot" type="number" placeholder="Numero de tarjeta">
         <div class="form-group">
             <select id="cuotas" class="form-control selector">
