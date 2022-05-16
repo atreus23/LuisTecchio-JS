@@ -18,6 +18,10 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
 }
 .fondo{
     background-color: $fondopag;
+
+    &.dark {
+		background: #111111;
+	}
 }
 .fondo-nav{
     background-image: linear-gradient($fonavfoo, $background);
@@ -29,6 +33,23 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     .navbar-toggler{
         border: 2px solid $bordes;
     }
+
+    body.dark & {
+		background: #222222;
+		box-shadow: 10px 10px 20px rgba(0,0,0,.16);
+		.nav-link {
+			color: #C8C8C8;
+			&:hover {
+				color: #FEFEFE;
+			}
+		}
+	}
+}
+.navbar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 .navbar-dark .navbar-nav .nav-link{
     color: $letras;
@@ -57,10 +78,11 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     }
 }
 .navbar-dark .navbar-nav .nav-link:hover{
-    color: $bordes;
+    color: #000;
 }
 .sillon{
     width: 100%;
+    margin-top: 95px;
 }
 .principal{
     @extend .sobre;
@@ -70,6 +92,10 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
 }
 .sobre{
     text-align: center;
+
+    body.dark & {
+        color: $letras;
+    }
 }
 .nosotros{
     @extend .sobre;
@@ -89,6 +115,10 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         @extend .sobre;
         background-color: $fonavfoo;
         font-size: 25px;
+
+        body.dark &{
+            background: rgb(87, 87, 87);
+        }
     }
 
     .serviciosp{
@@ -108,6 +138,10 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     width: 80%;
     margin: 0 auto;
     margin-bottom: 30px;
+
+    body.dark &{
+        background: rgb(61, 61, 61);
+    }
 }
 .findepagina{
     @extend .sobre;
@@ -143,12 +177,70 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         width: 100%;
         color: $bordes;
         margin-bottom: 0px;
+
+        body.dark & {
+            color: $letras;
+        }
     }
+
+    body.dark & {
+        color: $letras;
+		background: #222222;
+		box-shadow: 10px 10px 20px rgba(0,0,0,.16);
+		a {
+			color: #C8C8C8;
+			&:hover {
+				color: #FEFEFE;
+			}
+		}
+	}
 }
 /* fin de index */
+/* modo oscuro*/
+.switch {
+    margin-left: 20px;
+	background: #343D5B;
+	border-radius: 1000px;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	outline: none;
+	&::after {
+		content: "";
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		background: #F1F1F1;
+		top: 0;
+		left: 0;
+		right: unset;
+		border-radius: 100px;
+		transition: .3s ease all;
+		box-shadow: 0px 0px 2px 2px rgba(0,0,0,.2);
+	}
+	&.active {
+		background: orange;
+		color: #000;
+		&::after {
+			right: 0;
+			left: unset;
+		}
+	}
+	span {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		display: block;
+		background: none;
+		color: #fff;
+	}
+}
+/* fin de modo oscuro */
 /* inicio de galería */
 .container{
-    margin-top: 5px;
+    margin-top: 120px;
     margin-bottom: 20px;
 }
 .contenedor{
@@ -162,6 +254,11 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         padding: 20px;
         font-size: 25px;
         background-color: $background;
+
+        body.dark &{
+            background: hsl(0, 0%, 24%);
+            color: #fff;
+        }
     }
 
     .img-thumbnail{
@@ -171,35 +268,18 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     }
 }
 /* fin de galeria */
-/* inicio de videos */
-.centrado{
-    text-align: center;
-
-    .demostracion{
-        margin-top: 30px;
-        background-color: #795f5f4f;
-        font-family: $fontfamily;
-        font-size: 30px;
-    }
-
-    .videos{
-        margin: 1rem;
-        padding-bottom: 20px;
-
-        .videosp{
-            margin: 20px;
-        }
-    }
-}
-/* fin de videos */
 /* inicio de tienda */
 .productos{
     color: $letras;
-    margin-top: 20px;
+    margin-top: 120px;
     text-align: center;
     padding: 20px;
     font-size: 25px;
     background-color: $backimage;
+
+    body.dark &{
+        background: rgb(61, 61, 61);
+    }
 }
 .product-row{
     padding: 2%;
@@ -207,25 +287,33 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     justify-content: space-evenly;
     gap: 3%;
 }
-
+.table-2{
+    body.dark &{
+        background: rgb(61, 61, 61);
+    }
+}
 .card{
     width: 300px;
     border: 1px solid $bordes;
     margin-bottom: 20px;
     text-align: center;
-}
 
+    body.dark & {
+        color: $letras;
+        background: #222222;
+        box-shadow: 10px 10px 20px rgba(0,0,0,.16);
+    }
+}
 .card-img-top{
     height: 300px;
 }
-
 .cuadropago{
     padding-bottom: 25px;
     text-align: center;
         
     .tarjeta{
         color: $letras;
-        background-color:#7e7e7e;
+        background-color:#ff0000a2;
         font-size: 1.5rem;
         padding: 5px;
         border-radius: 25px;
@@ -235,7 +323,6 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         background-color: $background;
     }
 }
-
 .pagodebito{
     color: $letras;
     background: #0000003d;
@@ -255,7 +342,6 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         border-radius: 25px;
     }
 }
-
 .pagocredito{
     color: $letras;
     background: #0000003d;
@@ -284,10 +370,9 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         border-radius: 25px;
     }
 }
-
 .pagar{
     color: $letras;
-    background-color:#7e7e7e;
+    background-color:#ff0000a2;
     font-size: 1.5rem;
     padding: 6px;
     margin-left: 50%;
@@ -297,44 +382,35 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
 .pagar:hover{
     background-color: $background;
 }
-
 .pago{
     color: $letras;
     background-color:#7e7e7e;
     font-size: 1.2rem;
     padding: 6px;
 }
-
 .pago:hover{
     background-color: $background;
 }
-
 .peso{
     display: inline-block;
 }
-
 .card-title{
     text-align: center;
     font-size: 25px;
 }
-
 .btn-warning{
     display: block;
     margin: auto;
     color: $letras;
     background-color:#7e7e7e;
 }
-
 .btn-warning:hover{
     background-color: $background;
 }
-
 .card:hover{
     transform: scale(1.05);
     transition: all 1s;
 }
-
-
 /* fin de tienda */
 /* inicio de contactos */
 .tapiz{
@@ -346,7 +422,7 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     background: #0000003d;
     padding: 30px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 140px;
     margin-bottom: 30px;
     border-radius: 6px;
     font-family: $fontfamily;

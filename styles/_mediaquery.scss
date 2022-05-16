@@ -11,6 +11,13 @@
         .logo img{
             @include tamaño (40px, 40px);
         }
+
+        .switch{
+            margin-left: auto;
+        }
+    }
+    .sillon{
+        margin-top: 55px;
     }
     .sobre{        
         font-size: 15px;
@@ -42,8 +49,11 @@
     }
     .findepagina{
         .redes{
-        font-size: 15px;
+            font-size: 15px;
         }
+    }
+    .container{
+        margin-top: 80px;
     }
     .contenedor{
         display: block;
@@ -56,13 +66,9 @@
             @include tamaño (250px, 250px);
         }
     }
-    .centrado{
-        .demostracion{
-        font-size: 20px;
-        }
-    }
     .productos{
         font-size: 15px;
+        margin-top: 75px;
     }
     .product-row{
         .card{
@@ -80,7 +86,6 @@
         background: none;
     }
     .contacto{
-        color: $bordes;
         width: 300px;
 
         .tusdatos{
@@ -113,6 +118,13 @@
         .logo img{
             @include tamaño (50px, 50px);
         }
+
+        .switch{
+            margin-left: auto;
+        }
+    }
+    .sillon{
+        margin-top: 65px;
     }
     .sobre{        
         font-size: 20px;
@@ -152,13 +164,9 @@
             @include tamaño (350px, 350px);
         }
     }
-    .centrado{
-        .demostracion{
-        font-size: 25px;
-        }
-    }
     .productos{
         font-size: 20px;
+        margin-top: 85px;
     }
     .product-row{
         .card-title{
@@ -199,6 +207,12 @@
     }
     .navbar-dark .navbar-nav .nav-link{
         font-size: 20px;
+    }
+    .sillon{
+        margin-top: 75px;
+    }
+    .productos{
+        margin-top: 95px;
     }
     .contenedor{
         .variados{

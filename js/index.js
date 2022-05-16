@@ -76,17 +76,21 @@ const setCarrito = objeto =>{
     };
     carrito.hasOwnProperty(producto.id) && [producto.cantidad = carrito[producto.id].cantidad + 1];
     carrito[producto.id] = {...producto};
+    let cuadroPagar = document.getElementById("metodo-pago");
+    cuadroPagar.innerHTML = "";
     pintarCarrito();
 };
 
 const btnAumentarDisminuir = e => {
     const producto = carrito[e.target.dataset.id];
-    e.target.classList.contains('btn-info') && producto.cantidad++;
-    carrito[e.target.dataset.id] = { ...producto };
-    pintarCarrito();
-    e.target.classList.contains('btn-danger') && producto.cantidad--;
-    producto.cantidad === 0 ? delete carrito[e.target.dataset.id] : carrito[e.target.dataset.id] = {...producto};
-    pintarCarrito();
+    e.target.classList.contains('btn-info') && [producto.cantidad++,
+    carrito[e.target.dataset.id] = { ...producto },
+    pintarCarrito()];
+    e.target.classList.contains('btn-danger') && [producto.cantidad--,
+    producto.cantidad === 0 ? delete carrito[e.target.dataset.id] : carrito[e.target.dataset.id] = {...producto},
+    pintarCarrito()];
+    let cuadroPagar = document.getElementById("metodo-pago");
+    cuadroPagar.innerHTML = "";
     e.stopPropagation();
 };
 
@@ -106,8 +110,8 @@ const pintarFooter = () => {
             text: "No puede revertir esta acción",
             icon: 'warning',
             showCancelButton: true,
-            background: '#fff',
-            color: '#000',
+            background: '#000000d2',
+            color: '#fff',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
@@ -115,8 +119,8 @@ const pintarFooter = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               Swal.fire({
-                background: '#fff',
-                color: '#000',
+                background: '#000000d2',
+                color: '#fff',
                 title: 'Borrado!',
                 text: 'Sus productos han sido borrados',
                 icon: 'success'
@@ -169,6 +173,8 @@ function alertdebito() {
         icon: 'success',
         title: `Tu pago fue aprobado, total abonado $${nPrecio}`,
         showConfirmButton: true,
+        background: '#000000d2',
+        color: '#fff',
     });
     carrito = {};
     pintarCarrito();
@@ -205,8 +211,11 @@ function alertcredito() {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}.
+            Realizado en 3 cuotas de $${valorCuota}`,
             showConfirmButton: true,
+            background: '#000000d2',
+            color: '#fff',
         });
         carrito = {};
         pintarCarrito();
@@ -219,8 +228,11 @@ function alertcredito() {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}.
+            Realizado en 6 cuotas de $${valorCuota}`,
             showConfirmButton: true,
+            background: '#000000d2',
+            color: '#fff',
         });
         carrito = {};
         pintarCarrito();
@@ -233,8 +245,11 @@ function alertcredito() {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. Valor de cuotas: ${valorCuota}`,
+            title: `Su pago fue aprobado, total abonado $${nPrecio + recargo}. 
+            Realizado en 12 cuotas de $${valorCuota}`,
             showConfirmButton: true,
+            background: '#000000d2',
+            color: '#fff',
         });
         carrito = {};
         pintarCarrito();
@@ -246,6 +261,8 @@ function alertcredito() {
             icon: 'error',
             title: `Selecione las cuotas para poder realizar el pago`,
             showConfirmButton: true,
+            background: '#000000d2',
+            color: '#fff',
         });
         pagar();
     };
