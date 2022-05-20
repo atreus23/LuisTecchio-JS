@@ -137,7 +137,7 @@ const pintarFooter = () => {
 function pintarPagar() {
     let pagarBtn = document.getElementById("pago");
     pagarBtn.innerHTML = "";
-    Object.keys(carrito).length > 0 && [pagarBtn.innerHTML = `<button class="pagar" onclick="pagar()">Pagar</button>`];
+    Object.keys(carrito).length > 0 && [pagarBtn.innerHTML = `<div class="cuadropagar"><button class="pagar" onclick="pagar()">Pagar</button></div>`];
     return;
 };
 

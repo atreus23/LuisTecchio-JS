@@ -278,7 +278,7 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     background-color: $backimage;
 
     body.dark &{
-        background: rgb(61, 61, 61);
+        background: #3d3d3d;
     }
 }
 .product-row{
@@ -308,12 +308,17 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
     height: 300px;
 }
 .cuadropago{
-    padding-bottom: 25px;
     text-align: center;
+    background-color: #8a8a8a;
+    margin: auto;
+    margin-bottom: 25px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
         
     .tarjeta{
         color: $letras;
-        background-color:#ff0000a2;
+        background-color:#009714a2;
         font-size: 1.5rem;
         padding: 5px;
         border-radius: 25px;
@@ -370,17 +375,26 @@ $fontfamily: Georgia, 'Times New Roman', Times, serif;
         border-radius: 25px;
     }
 }
-.pagar{
-    color: $letras;
-    background-color:#ff0000a2;
-    font-size: 1.5rem;
-    padding: 6px;
-    margin-left: 50%;
+.cuadropagar{
+    text-align: center;
+    background-color: #8a8a8a;
+    margin: auto;
+    width: 200px;
     margin-bottom: 25px;
-    border-radius: 25px;
-}
-.pagar:hover{
-    background-color: $background;
+    border-radius: 10px;
+    padding: 10px;
+
+    .pagar{
+        color: $letras;
+        background-color:#ff0000a2;
+        font-size: 1.5rem;
+        padding: 6px;
+        border-radius: 25px;
+    }
+
+    .pagar:hover{
+        background-color: $background;
+    }
 }
 .pago{
     color: $letras;
